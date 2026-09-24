@@ -1,0 +1,28 @@
+{
+  "@context": ["dtmi:iotcentral:context;2", "dtmi:dtdl:context;2"],
+  "@id": "dtmi:unab:parcial1:NodoEstacionCampo;1",
+  "@type": "Interface",
+  "displayName": "Nodo Estacion de Campo",
+  "contents": [
+    {
+      "@type": "Telemetry",
+      "name": "lluviaLote",
+      "displayName": "Lluvia acumulada",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "humedadFoliar",
+      "displayName": "Humedad foliar",
+      "schema": "double"
+    },
+    {
+      "@type": ["Property", "Initialized"],
+      "name": "intervaloMuestreoSeg",
+      "displayName": "Intervalo de muestreo (s)",
+      "schema": "integer",
+      "writable": true,
+      "initialValue": 600
+    }
+  ]
+}

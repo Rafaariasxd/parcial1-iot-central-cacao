@@ -1,0 +1,47 @@
+{
+  "@context": ["dtmi:iotcentral:context;2", "dtmi:dtdl:context;2"],
+  "@id": "dtmi:unab:parcial1:NodoCultivo;1",
+  "@type": "Interface",
+  "displayName": "Nodo Cultivo",
+  "contents": [
+    {
+      "@type": "Telemetry",
+      "name": "humedadSuelo",
+      "displayName": "Humedad de suelo",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "temperaturaSuelo",
+      "displayName": "Temperatura de suelo",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "conductividad",
+      "displayName": "Conductividad electrica (EC)",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "iluminanciaPAR",
+      "displayName": "Iluminancia (aprox. PAR)",
+      "schema": "double"
+    },
+    {
+      "@type": ["Property", "Initialized"],
+      "name": "intervaloMuestreoSeg",
+      "displayName": "Intervalo de muestreo (s)",
+      "schema": "integer",
+      "writable": true,
+      "initialValue": 300
+    },
+    {
+      "@type": "Property",
+      "name": "loteId",
+      "displayName": "Identificador de lote",
+      "schema": "string",
+      "writable": false
+    }
+  ]
+}

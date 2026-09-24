@@ -1,0 +1,49 @@
+{
+  "@context": ["dtmi:iotcentral:context;2", "dtmi:dtdl:context;2"],
+  "@id": "dtmi:unab:parcial1:NodoRiego;1",
+  "@type": "Interface",
+  "displayName": "Nodo Reservorio / Riego",
+  "contents": [
+    {
+      "@type": "Telemetry",
+      "name": "nivelTanque",
+      "displayName": "Nivel del tanque",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "caudal",
+      "displayName": "Caudal",
+      "schema": "double"
+    },
+    {
+      "@type": ["Property", "Initialized"],
+      "name": "nivelTanqueMin",
+      "displayName": "Nivel minimo de tanque (%)",
+      "schema": "double",
+      "writable": true,
+      "initialValue": 20
+    },
+    {
+      "@type": "Property",
+      "name": "bombaActiva",
+      "displayName": "Bomba activa",
+      "schema": "boolean",
+      "writable": false
+    },
+    {
+      "@type": "Command",
+      "name": "activarBomba",
+      "displayName": "Activar bomba",
+      "request": {
+        "name": "duracionMin",
+        "displayName": "Duracion (minutos)",
+        "schema": "integer"
+      },
+      "response": {
+        "name": "resultado",
+        "schema": "string"
+      }
+    }
+  ]
+}

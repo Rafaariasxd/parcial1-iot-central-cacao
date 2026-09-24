@@ -1,0 +1,34 @@
+{
+  "@context": ["dtmi:iotcentral:context;2", "dtmi:dtdl:context;2"],
+  "@id": "dtmi:unab:parcial1:NodoProceso;1",
+  "@type": "Interface",
+  "displayName": "Nodo Secado / Fermentacion",
+  "contents": [
+    {
+      "@type": "Telemetry",
+      "name": "temperaturaCaja",
+      "displayName": "Temperatura de caja",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "humedadRelativa",
+      "displayName": "Humedad relativa",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "masaEstimada",
+      "displayName": "Masa estimada",
+      "schema": "double"
+    },
+    {
+      "@type": ["Property", "Initialized"],
+      "name": "loteEnProceso",
+      "displayName": "Lote en proceso",
+      "schema": "string",
+      "writable": true,
+      "initialValue": "ninguno"
+    }
+  ]
+}

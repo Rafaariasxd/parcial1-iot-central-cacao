@@ -1,0 +1,45 @@
+{
+  "@context": ["dtmi:iotcentral:context;2", "dtmi:dtdl:context;2"],
+  "@id": "dtmi:unab:parcial1:NodoMeteorologia;1",
+  "@type": "Interface",
+  "displayName": "Nodo Meteorologia del Predio",
+  "contents": [
+    {
+      "@type": "Telemetry",
+      "name": "temperatura",
+      "displayName": "Temperatura ambiente",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "humedadRelativa",
+      "displayName": "Humedad relativa",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "lluvia",
+      "displayName": "Precipitacion",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "viento",
+      "displayName": "Velocidad del viento",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "radiacion",
+      "displayName": "Radiacion solar",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "fuenteDatos",
+      "displayName": "Fuente de datos",
+      "schema": "string",
+      "writable": false
+    }
+  ]
+}

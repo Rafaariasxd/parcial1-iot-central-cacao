@@ -1,0 +1,34 @@
+{
+  "@context": ["dtmi:iotcentral:context;2", "dtmi:dtdl:context;2"],
+  "@id": "dtmi:unab:parcial1:NodoDoselSombra;1",
+  "@type": "Interface",
+  "displayName": "Nodo Dosel / Sombra",
+  "contents": [
+    {
+      "@type": "Telemetry",
+      "name": "temperatura",
+      "displayName": "Temperatura bajo dosel",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "humedadRelativa",
+      "displayName": "Humedad relativa",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "iluminancia",
+      "displayName": "Iluminancia",
+      "schema": "double"
+    },
+    {
+      "@type": ["Property", "Initialized"],
+      "name": "intervaloMuestreoSeg",
+      "displayName": "Intervalo de muestreo (s)",
+      "schema": "integer",
+      "writable": true,
+      "initialValue": 120
+    }
+  ]
+}

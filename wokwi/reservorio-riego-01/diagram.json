@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "author": "Parcial 1 IoT",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "us1",
+      "top": -110,
+      "left": 140,
+      "attrs": {
+        "distance": "40"
+      }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "rl1",
+      "top": 140,
+      "left": 200,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot1",
+      "top": 230,
+      "left": 200,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "us1:VCC",
+      "esp:5V",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "us1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "us1:TRIG",
+      "esp:5",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "us1:ECHO",
+      "esp:18",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "rl1:VCC",
+      "esp:5V",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "rl1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "rl1:IN",
+      "esp:2",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "pot1:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "pot1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "pot1:SIG",
+      "esp:34",
+      "orange",
+      [
+        "h0"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

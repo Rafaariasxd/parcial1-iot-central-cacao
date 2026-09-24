@@ -1,0 +1,33 @@
+{
+  "@context": ["dtmi:iotcentral:context;2", "dtmi:dtdl:context;2"],
+  "@id": "dtmi:unab:parcial1:NodoCalidadAire;1",
+  "@type": "Interface",
+  "displayName": "Nodo Calidad de Aire Rural",
+  "contents": [
+    {
+      "@type": "Telemetry",
+      "name": "pm25",
+      "displayName": "PM2.5",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "humedadRelativa",
+      "displayName": "Humedad relativa",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "aqi",
+      "displayName": "Indice de calidad de aire (AQI)",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "fuenteDatos",
+      "displayName": "Fuente de datos",
+      "schema": "string",
+      "writable": false
+    }
+  ]
+}

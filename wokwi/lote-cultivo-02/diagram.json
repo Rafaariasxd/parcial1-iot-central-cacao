@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "author": "Parcial 1 IoT",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -95.7,
+      "left": 129,
+      "attrs": {
+        "temperature": "24",
+        "humidity": "70"
+      }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot1",
+      "top": 110,
+      "left": 200,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot2",
+      "top": 170,
+      "left": 200,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -40,
+      "left": -230,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "dht1:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "dht1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "dht1:SDA",
+      "esp:15",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "pot1:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "pot1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "pot1:SIG",
+      "esp:34",
+      "orange",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "pot2:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "pot2:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "pot2:SIG",
+      "esp:35",
+      "purple",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr1:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr1:GND",
+      "esp:GND.1",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr1:AO",
+      "esp:32",
+      "yellow",
+      [
+        "h0"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

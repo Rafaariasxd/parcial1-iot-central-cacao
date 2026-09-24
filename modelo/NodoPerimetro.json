@@ -1,0 +1,26 @@
+{
+  "@context": ["dtmi:iotcentral:context;2", "dtmi:dtdl:context;2"],
+  "@id": "dtmi:unab:parcial1:NodoPerimetro;1",
+  "@type": "Interface",
+  "displayName": "Nodo Perimetro / Bodega",
+  "contents": [
+    {
+      "@type": "Telemetry",
+      "name": "temperaturaBodega",
+      "displayName": "Temperatura de bodega",
+      "schema": "double"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "puerta",
+      "displayName": "Puerta abierta (1 = abierta)",
+      "schema": "integer"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "movimiento",
+      "displayName": "Movimiento detectado (1 = si)",
+      "schema": "integer"
+    }
+  ]
+}

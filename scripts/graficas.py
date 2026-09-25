@@ -14,6 +14,8 @@ COLORES = ["#2f6f4e", "#b5651d", "#3b6ea5", "#8a4f7d", "#c0392b"]
 datos = {}
 for ruta in glob.glob(os.path.join(RAIZ, "datos", "*.csv")):
     nombre = os.path.basename(ruta)[:-4]
+    if nombre == "resumen_por_dia":
+        continue
     df = pd.read_csv(ruta)
     if df.empty:
         continue

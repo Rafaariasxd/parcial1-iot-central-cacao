@@ -112,6 +112,8 @@ def construir():
         kpi_multi("Temperatura de caja maxima (C)", "proceso", "temperaturaCaja", "max", 2, 2),
         kpi_multi("PM2.5 maximo", "aire", "pm25", "max", 4, 2),
         kpi_multi("Lluvia acumulada (mm)", "meteo", "lluvia", "sum", 6, 2),
+        texto("Zonas de la finca", "Lote 1 (norte) - Lote 2 (centro) - Lote 3 (sur) | Dosel de sombra junto al lote 2 | Estacion de campo en el cruce de caminos | Caseta: modem 4G, reservorio y riego | Bodega: secado, fermentacion y perimetro", 0, 21, 4, 2),
+        texto("Alertas activas", "Fermentacion caja caliente: temperatura de caja mayor a 42 C | Bodega temperatura alta: temperatura mayor a 28 C | Aviso por correo en cada disparo", 4, 21, 4, 2),
         linea("Humedad del suelo por lote (%)", "cultivo", [("humedadSuelo", "avg")], 0, 3),
         linea("Temperatura del suelo (C)", "cultivo", [("temperaturaSuelo", "avg")], 4, 3),
         linea("Iluminancia PAR (lx)", "cultivo", [("iluminanciaPAR", "avg")], 0, 6),

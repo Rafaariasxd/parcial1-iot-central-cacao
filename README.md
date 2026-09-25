@@ -34,17 +34,9 @@ Los 4 orígenes obligatorios del enunciado están presentes (Digital Twin, Wokwi
 Weather. El resto (Node.js, MQTT explícito, MQTT sobre WebSockets, REST manual) son orígenes de la lista abierta,
 justificados porque cada uno usa un código o protocolo de envío distinto de los demás.
 
-## Arquitectura de referencia (borrador)
+## Arquitectura de referencia
 
-```
-[Lotes 1-3, Dosel, Estación, Riego, Perímetro]  --Wi-Fi local-->  [Módem 4G/LTE de la finca]  --Internet-->
-                                                                            |
-   [Nodo Meteorología <- Open-Meteo]  --Internet directo-->                |
-   [Nodo Calidad de Aire <- Azure Maps Weather]  --Internet directo-->     |
-                                                                            v
-                                                              Azure IoT Central (MQTT/TLS 8883,
-                                                              DPS + Device Templates + Rules + Views)
-```
+![Arquitectura de referencia](documento/diagrama_arquitectura.png)
 
 Los nodos físicos de campo (nativo, Wokwi, MQTT, Node.js, WebSockets, REST manual) comparten el módem 4G/LTE de la
 finca. Los dos puentes de API (meteorología y calidad de aire) corren en un portátil/VM con salida a Internet

@@ -52,30 +52,25 @@ propia, sin pasar por el módem de campo.
 
 ## Estado actual
 
-- [x] Escenario elegido y catálogo de 10 orígenes diseñado.
-- [x] 8 plantillas DTDL redactadas (`modelo/`), agrupando los 10 dispositivos por rol.
-- [x] Aplicación IoT Central creada en Azure (`parcial1-granja-cacao`, Standard 0, Central US, grupo de recursos `rg-parcial1-iot`).
-- [x] Las 8 plantillas publicadas.
-- [x] Los 10 dispositivos dados de alta y asignados a su plantilla (`lote-cultivo-01/02/03`, `dosel-sombra-01`,
-      `estacion-campo-01`, `meteorologia-predio-01`, `calidad-aire-01`, `secado-fermentacion-01`, `reservorio-riego-01`,
-      `perimetro-bodega-01`).
-- [x] Primera prueba en vivo: `lote-cultivo-01` (Digital Twin / simulador nativo) conectado y enviando telemetría.
-- [x] 7 orígenes corriendo 24/7 desde una VM con servicios systemd (`scripts/`): Python SDK, MQTT explícito, Node.js,
-      Open-Meteo, Azure Maps Weather, MQTT sobre WebSockets y REST manual, cada uno con su patrón de apagones.
-- [ ] Wokwi (`lote-cultivo-02`, `reservorio-riego-01`) por conectar.
-- [ ] Datos visibles durante 4 días no continuos (22, 23, 24 y 25 de septiembre): en curso.
-- [ ] Diagrama de referencia definitivo (imagen, no solo el ASCII de este README).
-- [x] Panel `Cuarto de control - Finca Cacao` creado con `scripts/panel_api.py` (KPIs, 12 gráficas, conteo de flota).
-- [ ] Panel: logo, mapa de zonas y bloque de alertas.
-- [ ] Reglas de alerta y sustentación con dos códigos en dos equipos distintos.
-- [ ] Documento profesional final (portada, historial de versiones, capturas) — el `Trabajo Ejemplo - IoT Central`
-      del curso es la referencia de formato.
+- Escenario elegido y catálogo de 10 orígenes (`README`, `documento/`).
+- 8 plantillas DTDL en `modelo/`, publicadas en la aplicación de IoT Central.
+- Los 10 dispositivos creados y asignados a su plantilla.
+- 8 orígenes enviando: simulador nativo, Python SDK, MQTT explícito, Node.js, Open-Meteo, Atlas Weather (Azure Maps),
+  Python sobre WebSockets y REST manual. Los scripts están en `scripts/` y corren como servicios en una VM.
+- Panel `Cuarto de control - Finca Cacao` creado con `scripts/panel_api.py` (KPIs, gráficas, conteo de flota, zonas y alertas).
+- Dos reglas con correo: caja de fermentación mayor a 42 °C y bodega mayor a 28 °C.
+- Telemetría de los días 22, 23 y 24 de septiembre exportada en `datos/` (`scripts/exportar_datos.py`) con gráficas
+  en `evidencias/graficas/` (`scripts/graficas.py`).
+- Proyectos de Wokwi de `lote-cultivo-02` y `reservorio-riego-01` en `wokwi/`. El archivo `secrets.h` no se sube:
+  se copia desde `secrets.h.example` con el identificador del dispositivo y su clave derivada.
+- Documento del parcial en `documento/`.
 
-## Limitaciones ya identificadas (para la reflexión final)
+Pendiente: conectar los dos ESP32 de Wokwi, capturas del panel, cuarto día de telemetría y sustentación.
 
-- BH1750 mide iluminancia (lux), no PAR real (μmol·m⁻²·s⁻¹): se declara como aproximación, no como medición
-  fotosintética exacta.
-- Open-Meteo y Azure Maps Weather dan el clima de la zona, no del punto exacto del predio; se documenta como
-  limitación de resolución espacial.
-- IoT Central no ejecuta lógica de control: que la bomba realmente abra al bajar el tanque lo decide el código del
-  nodo Wokwi, no la plataforma.
+## Cómo correr un origen
+
+Las variables `IOTC_ID_SCOPE` e `IOTC_GROUP_KEY` se leen del entorno. La clave de cada dispositivo se deriva con
+HMAC-SHA256 de su identificador (`scripts/comun.py`). Ejemplo:
+
+    cd scripts
+    python lote03_python_sdk.py

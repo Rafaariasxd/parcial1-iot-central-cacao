@@ -134,13 +134,59 @@ parrafo(
 )
 
 doc.add_heading("2. Arquitectura de referencia", 1)
-figura(os.path.join(RAIZ, "documento", "diagrama_arquitectura.png"), 17, "Figura 1. Diagrama de referencia del escenario.")
 parrafo(
-    "Cada dispositivo se registra con DPS usando una clave derivada de una clave de grupo de inscripción "
-    "(HMAC-SHA256 del identificador del dispositivo). DPS lo asigna al IoT Hub de la aplicación y desde ahí envía "
-    "telemetría y propiedades. Los orígenes usan protocolos distintos: MQTT sobre TLS (8883), MQTT sobre WebSockets (443) "
-    "y HTTPS."
+    "Se tiene la siguiente arquitectura para la infraestructura digital de la finca de cacao, teniendo en cuenta los "
+    "dispositivos, los métodos de comunicación y los servicios de la nube. En esta versión del proyecto no existe una "
+    "infraestructura física, por lo que los sensores son simulados, aunque la arquitectura describe su implementación "
+    "física."
 )
+doc.add_heading("Arquitectura de referencia", 2)
+figura(os.path.join(RAIZ, "documento", "diagrama_arquitectura.png"), 17.2, "Figura 1. Arquitectura de referencia de la finca de cacao.")
+parrafo(
+    "La arquitectura incluye los dispositivos de la finca, que se comunican por Wi-Fi inalámbrico o por Ethernet según "
+    "su ubicación; los datos pasan por un gateway (el módem 4G/LTE de la caseta) y salen a Internet. Los dos nodos que "
+    "consumen APIs públicas salen directo a Internet, sin pasar por el módem de campo."
+)
+parrafo(
+    "Mediante la conexión a Internet los datos llegan a Azure IoT Central, donde el servicio de aprovisionamiento (DPS) "
+    "asigna cada dispositivo al IoT Hub. Desde ahí los datos siguen la ruta caliente, tibia y fría descrita en la "
+    "arquitectura del servicio, sobre una capa de servicios PaaS que aporta disponibilidad, escalabilidad y "
+    "recuperación ante desastres. En la experiencia web de administración se gestionan los dispositivos (datos sin "
+    "procesar, estado de conectividad, modelado y trabajos), se visualizan y analizan los datos (paneles, analítica y "
+    "reglas) y se administran los usuarios y las organizaciones."
+)
+parrafo(
+    "En la integración empresarial, Azure Maps (Atlas Weather) se consulta para la calidad del aire del nodo 07 y "
+    "las reglas de alerta envían correos electrónicos."
+)
+
+doc.add_heading("Sensores y dispositivos", 2)
+parrafo("Teniendo en cuenta el diseño de la finca, se tienen 10 dispositivos:")
+for item in (
+    "3 lotes de cultivo con sensores de humedad y temperatura de suelo, conductividad e iluminancia.",
+    "1 nodo de dosel de sombra con temperatura, humedad relativa e iluminancia.",
+    "1 estación de campo con pluviómetro y humedad foliar.",
+    "1 nodo de meteorología del predio y 1 nodo de calidad de aire, alimentados por APIs.",
+    "1 caja de secado y fermentación con temperatura, humedad y masa.",
+    "1 reservorio de riego con nivel de tanque, caudal y bomba.",
+    "1 nodo de perímetro y bodega con puerta, movimiento y temperatura.",
+):
+    doc.add_paragraph(item, style="List Bullet")
+parrafo("En la sección de plantillas se describe el resumen del DTDL de los dispositivos con sus variables.")
+
+doc.add_heading("Comunicación", 2)
+parrafo("Cada grupo de dispositivos tiene un tipo de conexión distinto:")
+for item in (
+    "Los nodos de campo (lotes, dosel, estación y reservorio) se conectan por Wi-Fi al módem 4G/LTE de la caseta, "
+    "porque están dispersos en el predio y no se puede tender cable hasta cada uno.",
+    "La caja de secado y el nodo de la bodega van por Ethernet, porque están fijos dentro de la caseta y la bodega.",
+    "Los nodos de meteorología y calidad de aire no son sensores del predio: consultan APIs públicas y llegan por "
+    "Internet directo, desde un equipo con salida propia.",
+    "Cada dispositivo se registra con DPS usando una clave derivada de la clave de grupo de inscripción (HMAC-SHA256 "
+    "del identificador). Los orígenes usan protocolos distintos: MQTT sobre TLS (8883), MQTT sobre WebSockets (443) "
+    "y HTTPS.",
+):
+    doc.add_paragraph(item, style="List Bullet")
 
 doc.add_heading("3. Catálogo de dispositivos y orígenes", 1)
 tabla(
@@ -284,5 +330,5 @@ parrafo(
     "navegador, mostrando en IoT Central los estados de conexión y la telemetría en vivo."
 )
 
-doc.save(os.path.join(RAIZ, "documento", "Parcial1_IoT_Central.docx"))
+doc.save(os.path.join(RAIZ, "documento", "Parcial1_IoT_Central_v2.docx"))
 print("listo")

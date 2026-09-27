@@ -59,6 +59,16 @@ propia, sin pasar por el módem de campo.
 
 Pendiente: conectar los dos ESP32 de Wokwi, capturas del panel, cuarto día de telemetría y sustentación.
 
+## Wokwi con VS Code
+
+Cada carpeta en `wokwi/` trae `platformio.ini` y `wokwi.toml` para compilar y simular sin depender del compilador
+gratuito del navegador. Con la extensión Wokwi para VS Code y PlatformIO instaladas:
+
+    cd wokwi/lote-cultivo-02
+    copiar secrets.h.example a src/secrets.h y completarlo con la clave del dispositivo
+    F1 -> PlatformIO: Build
+    F1 -> Wokwi: Start Simulator
+
 ## Cómo correr un origen
 
 Las variables `IOTC_ID_SCOPE` e `IOTC_GROUP_KEY` se leen del entorno. La clave de cada dispositivo se deriva con

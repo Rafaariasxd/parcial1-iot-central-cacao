@@ -51,8 +51,8 @@ propia, sin pasar por el módem de campo.
   Python sobre WebSockets y REST manual. Los scripts están en `scripts/` y corren como servicios en una VM.
 - Panel `Cuarto de control - Finca Cacao` creado con `scripts/panel_api.py` (KPIs, gráficas, conteo de flota, zonas y alertas).
 - Dos reglas con correo: caja de fermentación mayor a 42 °C y bodega mayor a 28 °C.
-- Telemetría de los días 22, 23 y 24 de septiembre exportada en `datos/` (`scripts/exportar_datos.py`) con gráficas
-  en `evidencias/graficas/` (`scripts/graficas.py`).
+- Telemetría de 6 días no continuos (22 al 27 de septiembre) exportada en `datos/` (`scripts/exportar_datos.py`) con
+  gráficas y análisis de cada una en `evidencias/graficas/` (`scripts/graficas.py`, `documento/analisis.py`).
 - Proyectos de Wokwi de `lote-cultivo-02` y `reservorio-riego-01` en `wokwi/`. El archivo `secrets.h` no se sube:
   se copia desde `secrets.h.example` con el identificador del dispositivo y su clave derivada.
 - Documento del parcial en `documento/`.

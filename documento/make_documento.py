@@ -1,5 +1,6 @@
 import os
 
+import analisis
 import pandas as pd
 from docx import Document
 from docx.enum.section import WD_ORIENT
@@ -299,7 +300,12 @@ parrafo(
     "Los datos salen de la consulta a IoT Central a través de su API."
 )
 tabla(["Dispositivo"] + [d[8:10] + "/" + d[5:7] for d in dias], [[i] + [piv.loc[i, d] if d in piv.columns else 0 for d in dias] for i in piv.index], None, 9.5)
-parrafo("Los días 24 y 25 de septiembre se completan cuando termine la captura.")
+parrafo(
+    f"La flota quedó registrando datos durante {len(dias)} días no continuos entre el "
+    f"{dias[0][8:10]}/{dias[0][5:7]} y el {dias[-1][8:10]}/{dias[-1][5:7]} de septiembre, "
+    "más de los 4 días que pide el enunciado. En cada día se ven horas sin datos porque cada dispositivo "
+    "sigue su propio ciclo de apagón simulado."
+)
 
 graficas = [
     ("01_humedad_suelo.png", "Humedad del suelo por lote"),
@@ -316,12 +322,14 @@ for i, (archivo, pie) in enumerate(graficas, 1):
     ruta = os.path.join(RAIZ, "evidencias", "graficas", archivo)
     if os.path.exists(ruta):
         figura(ruta, 16.5, f"Figura {i + 1}. {pie}.")
+        parrafo(analisis.texto_para(archivo))
 
 doc.add_heading("9. Repositorio", 1)
 parrafo(
-    "El repositorio contiene el README, los modelos DTDL (modelo), los scripts de cada origen (scripts), los proyectos de "
-    "Wokwi (wokwi), los datos exportados (datos) y las evidencias. Las claves y el ID scope no se suben: se leen de "
-    "variables de entorno y de archivos secrets.h locales, que están en el .gitignore."
+    "El repositorio está en github.com/Rafaariasxd/parcial1-iot-central-cacao y contiene el README, los modelos DTDL "
+    "(modelo), los scripts de cada origen (scripts), los proyectos de Wokwi (wokwi), los datos exportados (datos) y "
+    "las evidencias. Las claves y el ID scope no se suben: se leen de variables de entorno y de archivos secrets.h "
+    "locales, que están en el .gitignore."
 )
 
 doc.add_heading("10. Sustentación", 1)
@@ -335,5 +343,5 @@ prop.author = "Rafael Antonio Arias Monsalve"
 prop.last_modified_by = "Rafael Antonio Arias Monsalve"
 prop.comments = ""
 prop.title = "Parcial 1 - Internet de las Cosas"
-doc.save(os.path.join(RAIZ, "documento", "Parcial1_IoT_Central_v3.docx"))
+doc.save(os.path.join(RAIZ, "documento", "Parcial1_IoT_Central_v4.docx"))
 print("listo")

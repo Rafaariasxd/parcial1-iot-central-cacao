@@ -163,11 +163,10 @@ parrafo(
 )
 parrafo(
     "Mediante la conexión a Internet los datos llegan a Azure IoT Central, donde el servicio de aprovisionamiento (DPS) "
-    "asigna cada dispositivo al IoT Hub. Desde ahí los datos siguen la ruta caliente, tibia y fría descrita en la "
-    "arquitectura del servicio, sobre una capa de servicios PaaS que aporta disponibilidad, escalabilidad y "
-    "recuperación ante desastres. En la experiencia web de administración se gestionan los dispositivos (datos sin "
-    "procesar, estado de conectividad, modelado y trabajos), se visualizan y analizan los datos (paneles, analítica y "
-    "reglas) y se administran los usuarios y las organizaciones."
+    "asigna cada dispositivo al IoT Hub. Desde ahí siguen la ruta caliente, tibia y fría que ya trae el servicio, "
+    "sobre una capa PaaS que se encarga de la disponibilidad y la recuperación ante fallos sin que uno tenga que "
+    "montar nada de eso. Y ya en la parte de administración web es donde se ve todo: los dispositivos conectados, "
+    "el panel con las gráficas y reglas, y quién tiene acceso a la aplicación."
 )
 parrafo(
     "En la integración empresarial, Azure Maps (Atlas Weather) se consulta para la calidad del aire del nodo 07 y "
@@ -289,10 +288,11 @@ tabla(
 
 doc.add_heading("8. Cuarto de control", 1)
 parrafo(
-    "El panel Cuarto de control - Finca Cacao muestra el conteo de la flota, siete indicadores (promedio, máximo y "
-    "mínimo de humedad de suelo, nivel mínimo del tanque, temperatura máxima de la caja, PM2.5 máximo y lluvia "
-    "acumulada) y doce gráficas de línea con las variables de los ocho tipos de dispositivo. Se creó con un script "
-    "que usa la API de IoT Central (panel_api.py)."
+    "El panel Cuarto de control - Finca Cacao arriba muestra el conteo de la flota y siete KPI: el promedio, el "
+    "máximo y el mínimo de humedad de suelo, el nivel mínimo del tanque, la temperatura máxima de la caja, el PM2.5 "
+    "máximo y la lluvia acumulada. Debajo van las doce gráficas de línea, una por cada variable de los ocho tipos "
+    "de dispositivo. No se armó a mano tile por tile: se hizo con un script (panel_api.py) que llama la API de "
+    "IoT Central."
 )
 doc.add_heading("Reglas de alerta", 2)
 tabla(
@@ -340,10 +340,14 @@ for i, (archivo, pie) in enumerate(graficas, 1):
 
 doc.add_heading("10. Repositorio", 1)
 parrafo(
-    "El repositorio está en github.com/Rafaariasxd/parcial1-iot-central-cacao y contiene el README, los modelos DTDL "
-    "(modelo), los scripts de cada origen (scripts), los proyectos de Wokwi (wokwi), los datos exportados (datos) y "
-    "las evidencias. Las claves y el ID scope no se suben: se leen de variables de entorno y de archivos secrets.h "
-    "locales, que están en el .gitignore."
+    "Todo el código quedó en github.com/Rafaariasxd/parcial1-iot-central-cacao: el modelo DTDL de cada plantilla, "
+    "los scripts que arman los orígenes, los dos proyectos de Wokwi y los datos que se sacaron de IoT Central para "
+    "hacer las gráficas de este documento."
+)
+parrafo(
+    "La clave del grupo y el ID scope no quedaron subidos. Cada script los lee de variables de entorno, y los "
+    "proyectos de Wokwi de un secrets.h que no está en el repo (queda en el .gitignore), así que para correr algo "
+    "hay que poner ahí la clave propia."
 )
 
 prop = doc.core_properties

@@ -343,5 +343,5 @@ prop.author = "Rafael Antonio Arias Monsalve"
 prop.last_modified_by = "Rafael Antonio Arias Monsalve"
 prop.comments = ""
 prop.title = "Parcial 1 - Internet de las Cosas"
-doc.save(os.path.join(RAIZ, "documento", "Parcial1_IoT_Central_v4.docx"))
+doc.save(os.path.join(RAIZ, "documento", "Parcial1_IoT_Central.docx"))
 print("listo")

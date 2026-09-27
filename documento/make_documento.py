@@ -134,7 +134,20 @@ parrafo(
     "un nodo de calidad de aire y un nodo de perímetro en la bodega de secado."
 )
 
-doc.add_heading("2. Arquitectura de referencia", 1)
+doc.add_heading("2. Plano de la finca", 1)
+parrafo(
+    "El predio se organiza en cuatro zonas: los tres lotes de cultivo al occidente, el dosel de sombra y la estación "
+    "de campo en el cruce de los caminos internos, la caseta central con el módem 4G/LTE y el reservorio de riego, y "
+    "la bodega de secado y fermentación. El plano ubica los 10 dispositivos sobre esas zonas."
+)
+figura(os.path.join(RAIZ, "documento", "plano_finca.png"), 16, "Figura 1. Plano de la finca con la ubicación de los 10 dispositivos.")
+parrafo(
+    "1 lote-cultivo-01, 2 lote-cultivo-02, 3 lote-cultivo-03, 4 dosel-sombra-01, 5 estacion-campo-01, "
+    "6 meteorologia-predio-01, 7 calidad-aire-01, 8 secado-fermentacion-01, 9 reservorio-riego-01, "
+    "10 perimetro-bodega-01."
+)
+
+doc.add_heading("3. Arquitectura de referencia", 1)
 parrafo(
     "Se tiene la siguiente arquitectura para la infraestructura digital de la finca de cacao, teniendo en cuenta los "
     "dispositivos, los métodos de comunicación y los servicios de la nube. En esta versión del proyecto no existe una "
@@ -142,7 +155,7 @@ parrafo(
     "física."
 )
 doc.add_heading("Arquitectura de referencia", 2)
-figura(os.path.join(RAIZ, "documento", "diagrama_arquitectura.png"), 17.2, "Figura 1. Arquitectura de referencia de la finca de cacao.")
+figura(os.path.join(RAIZ, "documento", "diagrama_arquitectura.png"), 17.2, "Figura 2. Arquitectura de referencia de la finca de cacao.")
 parrafo(
     "La arquitectura incluye los dispositivos de la finca, que se comunican por Wi-Fi inalámbrico o por Ethernet según "
     "su ubicación; los datos pasan por un gateway (el módem 4G/LTE de la caseta) y salen a Internet. Los dos nodos que "
@@ -189,7 +202,8 @@ for item in (
 ):
     doc.add_paragraph(item, style="List Bullet")
 
-doc.add_heading("3. Catálogo de dispositivos y orígenes", 1)
+doc.add_heading("4. Catálogo de dispositivos y orígenes", 1)
+figura(os.path.join(RAIZ, "documento", "iconos_dispositivos.png"), 16.5, "Figura 3. Un ícono por cada plantilla de dispositivo.")
 tabla(
     ["#", "Dispositivo", "Plantilla", "Origen de envío", "Variables enviadas"],
     [
@@ -208,7 +222,7 @@ tabla(
     8.5,
 )
 
-doc.add_heading("4. Parámetros y hojas de datos de referencia", 1)
+doc.add_heading("5. Parámetros y hojas de datos de referencia", 1)
 parrafo(
     "Los dispositivos de Wokwi y los nodos simulados representan sensores reales. La tabla indica el sensor de "
     "referencia de cada variable, su rango y la hoja de datos consultada."
@@ -234,7 +248,7 @@ tabla(
     8.5,
 )
 
-doc.add_heading("5. Plantillas de dispositivo (DTDL)", 1)
+doc.add_heading("6. Plantillas de dispositivo (DTDL)", 1)
 parrafo("Se publicaron 8 plantillas, una por rol de nodo. Los archivos están en la carpeta modelo del repositorio.")
 tabla(
     ["Plantilla", "Telemetría", "Propiedades", "Comandos"],
@@ -252,7 +266,7 @@ tabla(
     8.5,
 )
 
-doc.add_heading("6. Asincronía, desconexiones y operación en vivo", 1)
+doc.add_heading("7. Asincronía, desconexiones y operación en vivo", 1)
 parrafo(
     "Cada script simula apagones con un ciclo propio para que los dispositivos no se desconecten a la vez. En los "
     "servicios de la VM el dispositivo cierra la conexión, deja pasar la ventana de apagón y se reconecta solo. "
@@ -273,7 +287,7 @@ tabla(
     9.5,
 )
 
-doc.add_heading("7. Cuarto de control", 1)
+doc.add_heading("8. Cuarto de control", 1)
 parrafo(
     "El panel Cuarto de control - Finca Cacao muestra el conteo de la flota, siete indicadores (promedio, máximo y "
     "mínimo de humedad de suelo, nivel mínimo del tanque, temperatura máxima de la caja, PM2.5 máximo y lluvia "
@@ -291,7 +305,7 @@ tabla(
     9.5,
 )
 
-doc.add_heading("8. Telemetría por día", 1)
+doc.add_heading("9. Telemetría por día", 1)
 resumen = pd.read_csv(os.path.join(RAIZ, "datos", "resumen_por_dia.csv"))
 dias = sorted(resumen["dia"].unique())
 piv = resumen.pivot_table(index="dispositivo", columns="dia", values="horas_con_datos", aggfunc="sum").fillna(0).astype(int)
@@ -321,21 +335,15 @@ doc.add_heading("Gráficas de la telemetría recibida", 2)
 for i, (archivo, pie) in enumerate(graficas, 1):
     ruta = os.path.join(RAIZ, "evidencias", "graficas", archivo)
     if os.path.exists(ruta):
-        figura(ruta, 16.5, f"Figura {i + 1}. {pie}.")
+        figura(ruta, 16.5, f"Figura {i + 3}. {pie}.")
         parrafo(analisis.texto_para(archivo))
 
-doc.add_heading("9. Repositorio", 1)
+doc.add_heading("10. Repositorio", 1)
 parrafo(
     "El repositorio está en github.com/Rafaariasxd/parcial1-iot-central-cacao y contiene el README, los modelos DTDL "
     "(modelo), los scripts de cada origen (scripts), los proyectos de Wokwi (wokwi), los datos exportados (datos) y "
     "las evidencias. Las claves y el ID scope no se suben: se leen de variables de entorno y de archivos secrets.h "
     "locales, que están en el .gitignore."
-)
-
-doc.add_heading("10. Sustentación", 1)
-parrafo(
-    "Se ejecutan dos códigos en dos equipos distintos: un script de Python en el portátil y el ESP32 de Wokwi en el "
-    "navegador, mostrando en IoT Central los estados de conexión y la telemetría en vivo."
 )
 
 prop = doc.core_properties

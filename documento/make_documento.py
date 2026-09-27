@@ -154,7 +154,7 @@ parrafo(
     "infraestructura física, por lo que los sensores son simulados, aunque la arquitectura describe su implementación "
     "física."
 )
-doc.add_heading("Arquitectura de referencia", 2)
+doc.add_heading("Diagrama", 2)
 figura(os.path.join(RAIZ, "documento", "diagrama_arquitectura.png"), 17.2, "Figura 2. Arquitectura de referencia de la finca de cacao.")
 parrafo(
     "La arquitectura incluye los dispositivos de la finca, que se comunican por Wi-Fi inalámbrico o por Ethernet según "
